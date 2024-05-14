@@ -1,13 +1,13 @@
 package main
 
 import (
-	"emvn/cmd/server"
-	_ "emvn/docs"
+	"gin-boilerplate/cmd/server"
+	_ "gin-boilerplate/docs"
 )
 
-//	@title			EMVN API
+//	@title			gin-boilerplate API
 //	@version		1.0
-//	@description	Hung.Phan apply for junior Golang developer position at EMVN
+//	@description	My boilerplate for personal projects
 
 // @securityDefinitions.apikey BearerAuth
 // @in							header

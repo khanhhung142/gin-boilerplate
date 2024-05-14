@@ -1,11 +1,11 @@
 package server
 
 import (
-	auth_controller "emvn/internal/controller/auth"
-	auth_usecase "emvn/internal/usecase/auth"
-	"emvn/middlewares"
+	auth_controller "gin-boilerplate/internal/controller/auth"
+	auth_usecase "gin-boilerplate/internal/usecase/auth"
+	"gin-boilerplate/middlewares"
 
-	doc "emvn/docs"
+	doc "gin-boilerplate/docs"
 
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
@@ -37,7 +37,7 @@ func InitHandler() *gin.Engine {
 	authGroup.POST("/signin", authController.SignIn)
 
 	// Swagger
-	doc.SwaggerInfo.Title = "EMVN API"
+	doc.SwaggerInfo.Title = "gin-boilerplate API"
 	doc.SwaggerInfo.BasePath = "/"
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

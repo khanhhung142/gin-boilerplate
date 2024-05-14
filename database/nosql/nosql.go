@@ -3,7 +3,7 @@ package nosql
 import (
 	"context"
 
-	"emvn/consts"
+	"gin-boilerplate/consts"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"

@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"emvn/consts"
-	auth_usecase "emvn/internal/usecase/auth"
+	"gin-boilerplate/consts"
+	auth_usecase "gin-boilerplate/internal/usecase/auth"
 	"strings"
 
 	"github.com/gin-gonic/gin"

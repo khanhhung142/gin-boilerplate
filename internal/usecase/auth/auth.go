@@ -2,10 +2,10 @@ package auth_usecase
 
 import (
 	"context"
-	"emvn/consts"
-	"emvn/internal/model"
-	user_repository "emvn/internal/repository/user"
 	"fmt"
+	"gin-boilerplate/consts"
+	"gin-boilerplate/internal/model"
+	user_repository "gin-boilerplate/internal/repository/user"
 	"log/slog"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"

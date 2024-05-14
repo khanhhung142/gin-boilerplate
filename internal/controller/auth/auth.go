@@ -1,9 +1,9 @@
 package auth_controller
 
 import (
-	"emvn/consts"
-	"emvn/internal/model"
-	auth_usecase "emvn/internal/usecase/auth"
+	"gin-boilerplate/consts"
+	"gin-boilerplate/internal/model"
+	auth_usecase "gin-boilerplate/internal/usecase/auth"
 
 	"github.com/gin-gonic/gin"
 )

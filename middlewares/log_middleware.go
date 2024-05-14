@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"emvn/consts"
 	"fmt"
+	"gin-boilerplate/consts"
 	"log"
 	"time"
 

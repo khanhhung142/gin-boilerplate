@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"emvn/config"
+	"gin-boilerplate/config"
 	"io"
 	"log/slog"
 	"os"

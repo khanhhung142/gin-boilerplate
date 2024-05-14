@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"emvn/consts"
+	"gin-boilerplate/consts"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

@@ -2,10 +2,10 @@ package user_repository
 
 import (
 	"context"
-	"emvn/consts"
-	"emvn/database/nosql"
-	"emvn/internal/model"
 	"fmt"
+	"gin-boilerplate/consts"
+	"gin-boilerplate/database/nosql"
+	"gin-boilerplate/internal/model"
 	"log/slog"
 
 	"go.mongodb.org/mongo-driver/bson"

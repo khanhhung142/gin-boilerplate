@@ -2,11 +2,11 @@ package server
 
 import (
 	"context"
-	"emvn/config"
-	"emvn/database/nosql/mongodb"
-	"emvn/pkg/logger"
-	"emvn/pkg/storage/local"
-	"emvn/pkg/validator"
+	"gin-boilerplate/config"
+	"gin-boilerplate/database/sql/postgres"
+	"gin-boilerplate/pkg/logger"
+	"gin-boilerplate/pkg/storage/local"
+	"gin-boilerplate/pkg/validator"
 	"log"
 	"net/http"
 	"os"
@@ -22,7 +22,8 @@ func StartServer() {
 	logger.NewLogger(cfg.Log)
 	ctx := context.Background()
 
-	mongodb.InitClient(ctx)
+	// mongodb.InitClient(ctx)
+	postgres.InitClient(ctx, cfg)
 	local.InitLocalStorage()
 	validator.InitValidator()
 

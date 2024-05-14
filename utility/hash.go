@@ -1,10 +1,10 @@
 package utility
 
 import (
-	"emvn/config"
-	"emvn/consts"
 	"errors"
 	"fmt"
+	"gin-boilerplate/config"
+	"gin-boilerplate/consts"
 	"log/slog"
 	"math/rand"
 

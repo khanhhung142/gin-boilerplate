@@ -2,8 +2,8 @@ package mongodb
 
 import (
 	"context"
-	"emvn/config"
-	"emvn/consts"
+	"gin-boilerplate/config"
+	"gin-boilerplate/consts"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"

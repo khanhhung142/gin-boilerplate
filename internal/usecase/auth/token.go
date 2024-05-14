@@ -2,9 +2,9 @@ package auth_usecase
 
 import (
 	"context"
-	"emvn/config"
-	"emvn/utility"
 	"encoding/json"
+	"gin-boilerplate/config"
+	"gin-boilerplate/utility"
 	"log/slog"
 	"time"
 

@@ -1,9 +1,9 @@
 package server
 
 import (
-	"emvn/database/nosql/mongodb"
-	user_repository "emvn/internal/repository/user"
-	auth_usecase "emvn/internal/usecase/auth"
+	"gin-boilerplate/database/nosql/mongodb"
+	user_repository "gin-boilerplate/internal/repository/user"
+	auth_usecase "gin-boilerplate/internal/usecase/auth"
 )
 
 func Register() {
