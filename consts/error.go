@@ -20,6 +20,7 @@ func (e CustomError) Detail() errorDeatil {
 }
 
 var (
+	CodeErrorUnknown      = CustomError{HttpStatus: 500, errorDeatil: errorDeatil{Code: 1000, Message: "Unknown error"}}
 	CodeInvalidToken      = CustomError{HttpStatus: 401, errorDeatil: errorDeatil{Code: 1001, Message: "Invalid token"}}
 	CodeTokenExpired      = CustomError{HttpStatus: 401, errorDeatil: errorDeatil{Code: 1002, Message: "Token expired"}}
 	CodeRedisKeyNotFound  = CustomError{HttpStatus: 500, errorDeatil: errorDeatil{Code: 1003, Message: "Redis key not found"}}

@@ -7,7 +7,12 @@ database:
 
 log:
   level: ${LOG_LEVEL}
-
+  path: "./log/"
+  file: "prodlog.log"
+  timeFormat: "2006-01-02T15:04:05"
+  
 auth:
   secret_key: ${AUTH_JWT_SECRET_KEY}
   access_token_expire_minute: ${AUTH_ACCESS_TOKEN_EXPIRE_MINUTE}
+
+env: ${ENV}

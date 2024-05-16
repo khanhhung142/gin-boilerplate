@@ -5,6 +5,7 @@ type Config struct {
 	Database DatabaseConfig `yaml:"database"`
 	Log      LogConfig      `yaml:"log"`
 	Auth     AuthConfig     `yaml:"auth"`
+	Env      string         `yaml:"env"`
 }
 
 type ServerConfig struct {
@@ -17,7 +18,10 @@ type DatabaseConfig struct {
 }
 
 type LogConfig struct {
-	Level string `yaml:"level"`
+	Level      string `yaml:"level"`
+	Path       string `yaml:"path"`
+	File       string `yaml:"file"`
+	TimeFormat string `yaml:"timeFormat"`
 }
 
 type AuthConfig struct {

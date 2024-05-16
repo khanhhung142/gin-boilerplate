@@ -2,14 +2,12 @@ package auth_usecase
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"gin-boilerplate/consts"
 	"gin-boilerplate/internal/model"
 	user_repository "gin-boilerplate/internal/repository/user"
-	"log/slog"
-
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
+	"gin-boilerplate/pkg/logger"
 )
 
 type IAuthUsecase interface {
@@ -37,24 +35,25 @@ func (u *authUsecase) SignUp(ctx context.Context, user model.User) error {
 	// check if user already exists
 	dbUser, err := u.userRepo.GetUserByUsername(ctx, user.Username)
 	if err != nil {
-		if err.Error() != mongo.ErrNoDocuments.Error() {
-			return consts.CodeInternalError
+		if errors.Is(err, consts.CodeUserNotFound) {
+			err = nil
 		}
 	}
 
 	if dbUser.Username == user.Username {
 		return consts.CodeUserAlreadyExists
 	}
+
 	// Add hash password
 	user.Password, err = hashPassword(user.Password)
 	if err != nil {
-		slog.Error(err.Error())
+		logger.Error(ctx, "hashPassword", err)
 		return consts.CodeInternalError
 	}
 
-	user.ID = primitive.NewObjectID().Hex()
 	_, err = u.userRepo.CreateUser(ctx, user)
 	if err != nil {
+		logger.Error(ctx, "CreateUser", err)
 		return consts.CodeInternalError
 	}
 
@@ -65,11 +64,9 @@ func (u *authUsecase) SignIn(ctx context.Context, username, password string) (Si
 	var output SignInOutput
 	dbUser, err := u.userRepo.GetUserByUsername(ctx, username)
 	if err != nil {
-		if err.Error() == mongo.ErrNoDocuments.Error() {
-			return output, consts.CodeUserNotFound
-		}
 		return output, err
 	}
+
 	if !checkPasswordHash(password, dbUser.Password) {
 		return output, consts.CodeWrongPassword
 	}

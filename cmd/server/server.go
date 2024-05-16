@@ -7,11 +7,12 @@ import (
 	"gin-boilerplate/pkg/logger"
 	"gin-boilerplate/pkg/storage/local"
 	"gin-boilerplate/pkg/validator"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"go.uber.org/zap/zapcore"
 )
 
 func StartServer() {
@@ -19,7 +20,9 @@ func StartServer() {
 	config.InitConfig()
 	cfg := config.GetConfig()
 
-	logger.NewLogger(cfg.Log)
+	logger.InitLogger(cfg)
+	defer logger.Sync()
+
 	ctx := context.Background()
 
 	// mongodb.InitClient(ctx)
@@ -39,7 +42,7 @@ func StartServer() {
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("listen: %s\n", err)
+			logger.Fatal(ctx, "Server startup failed:", zapcore.Field{Key: "error", Type: zapcore.StringType, String: err.Error()})
 		}
 	}()
 
@@ -48,13 +51,13 @@ func StartServer() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	log.Println("Shutdown Server ...")
+	logger.Info(ctx, "Shutdown Server ...")
 
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
+		logger.Fatal(ctx, "Server Shutdown:", zapcore.Field{Key: "error", Type: zapcore.StringType, String: err.Error()})
 	}
 	<-ctx.Done()
-	log.Println("Server shutdown gracefully.")
+	logger.Info(ctx, "Server shutdown gracefully.")
 }

@@ -7,7 +7,12 @@ database:
 
 log:
   level: debug
+  path: "./log/"
+  file: "prodlog.log"
+  timeFormat: "2006-01-02T15:04:05"
 
 auth:
   secret_key: +hd>PywO8jrAnIewJvK7U[bU1;*28m
   access_token_expire_minute: 60
+
+env: "local"

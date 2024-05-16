@@ -9,3 +9,8 @@ const GinDetailErrorKey = "api_additional_error"
 const GinResponseKey = "api_response"
 
 const GinAuthUid = "uid_auth"
+
+const (
+	TraceKey     = "trace_id"
+	TracekeyGrpc = "grpc.trace_id"
+)

@@ -10,8 +10,8 @@ import (
 
 var config Config
 
-func GetConfig() Config {
-	return config
+func GetConfig() *Config {
+	return &config
 }
 
 // Load the config from the config.yaml file

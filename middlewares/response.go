@@ -16,14 +16,12 @@ type Response struct {
 func ResponseMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Next()
-
 		if err, ok := c.Get(consts.GinErrorKey); ok {
 			err := err.(consts.CustomError)
 			if additionalErr, ok := c.Get(consts.GinDetailErrorKey); ok {
 				err.Message = err.Message + " | " + additionalErr.(error).Error()
 			}
 			c.JSON(err.HttpStatus, err.Detail())
-			c.Abort()
 			return
 		}
 

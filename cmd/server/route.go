@@ -17,9 +17,11 @@ func InitHandler() *gin.Engine {
 	r := gin.Default()
 
 	// Add middlewares
+	r.Use(middlewares.RecoverMiddleware())
 	r.Use(middlewares.LogMiddleware())
-	r.Use(middlewares.CORSMiddleware())
 	r.Use(middlewares.ResponseMiddleware())
+	r.Use(middlewares.MiddlewareTracing())
+	r.Use(middlewares.CORSMiddleware())
 
 	// Add routes
 
