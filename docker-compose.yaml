@@ -5,28 +5,20 @@ networks:
     driver: bridge
 
 services:
-  # mongo:
-  #   image: mongo
-  #   restart: always
-  #   ports:
-  #     - "27018:27017"
-  #   networks:
-  #     - net
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: root
-  #     MONGO_INITDB_ROOT_PASSWORD: example
-
-  # mongo-express:
-  #   image: mongo-express
-  #   restart: always
-  #   ports:
-  #     - 8081:8081
-  #   networks:
-  #     - net
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: example
-  #     ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+  db:
+    image: postgres:16
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER=admin
+      POSTGRES_DB=habbit_tracker
+      PGDATA = /var/lib/postgresql/data
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - net
 
   app:
     build: .
@@ -39,8 +31,7 @@ services:
       - net
     environment:
       SERVER_PORT: ":8080"
-      DATABASE_CONNECT_STRING: mongodb://root:example@mongo:27017/
-      DATABAE_NAME: test
+      DATABASE_CONNECT_STRING: postgresql://admin:secret@localhost:5432/test?sslmode=disable
       LOG_LEVEL: info
       AUTH_JWT_SECRET_KEY: +hd>PywO8jrAnIewJvK7U[bU1;*28m
       AUTH_ACCESS_TOKEN_EXPIRE_MINUTE: 60

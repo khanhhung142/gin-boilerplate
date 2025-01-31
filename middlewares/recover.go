@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"gin-boilerplate/consts"
-	"gin-boilerplate/pkg/logger"
+	"habbit-tracker/consts"
+	"habbit-tracker/pkg/logger"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

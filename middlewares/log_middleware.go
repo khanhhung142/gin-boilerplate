@@ -1,9 +1,9 @@
 package middlewares
 
 import (
-	"gin-boilerplate/consts"
-	"gin-boilerplate/pkg/idutil"
-	"gin-boilerplate/pkg/logger"
+	"habbit-tracker/consts"
+	"habbit-tracker/pkg/idutil"
+	"habbit-tracker/pkg/logger"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -27,6 +27,7 @@ func LogMiddleware() gin.HandlerFunc {
 		}
 		if c.Request.RequestURI != "/" {
 			logger.Info(c, "request",
+				zap.String("traceId", c.GetString(consts.TraceKey)),
 				zap.String("time", t.Format("2006/01/02 - 15:04:05 -07")),
 				zap.String("method", c.Request.Method),
 				zap.String("uri", c.Request.RequestURI),

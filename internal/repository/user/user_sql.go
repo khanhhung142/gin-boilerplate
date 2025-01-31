@@ -2,35 +2,29 @@ package user_repository
 
 import (
 	"context"
-	"database/sql"
-	"gin-boilerplate/internal/model"
+	"habbit-tracker/internal/model"
+
+	"gorm.io/gorm"
 )
 
-type userSqlRepository struct {
-	sqlDB *sql.DB
+type UserSqlRepository struct {
+	DB *gorm.DB
 }
 
-// Singleton pattern
-var localUserSqlRepository IUserRepository
-
-func InitUserSqlRepository(sqlDB *sql.DB) {
-	localUserSqlRepository = &userSqlRepository{
-		sqlDB: sqlDB,
+func InitUserSqlRepository(sqlDB *gorm.DB) IUserRepository {
+	return &UserSqlRepository{
+		DB: sqlDB,
 	}
 }
 
-func UserSqlRepository() IUserRepository {
-	return localUserSqlRepository
-}
-
-func (r *userSqlRepository) CreateUser(ctx context.Context, user model.User) (model.User, error) {
-	id, err := createUser(r.sqlDB, user)
+func (r *UserSqlRepository) CreateUser(ctx context.Context, user model.User) (model.User, error) {
+	id, err := r.createUser(user)
 	if err != nil {
 		return model.User{}, err
 	}
-	return getById(r.sqlDB, id)
+	return r.getById(id)
 }
 
-func (r *userSqlRepository) GetUserByUsername(ctx context.Context, username string) (model.User, error) {
-	return getByUsername(r.sqlDB, username)
+func (r *UserSqlRepository) GetUserByUsername(ctx context.Context, username string) (model.User, error) {
+	return r.getByUsername(username)
 }

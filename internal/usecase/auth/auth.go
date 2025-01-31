@@ -4,10 +4,10 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"gin-boilerplate/consts"
-	"gin-boilerplate/internal/model"
-	user_repository "gin-boilerplate/internal/repository/user"
-	"gin-boilerplate/pkg/logger"
+	"habbit-tracker/consts"
+	"habbit-tracker/internal/model"
+	user_repository "habbit-tracker/internal/repository/user"
+	"habbit-tracker/pkg/logger"
 )
 
 type IAuthUsecase interface {

@@ -1,13 +1,13 @@
 package main
 
 import (
-	"gin-boilerplate/cmd/server"
-	_ "gin-boilerplate/docs"
+	"habbit-tracker/cmd/server"
+	_ "habbit-tracker/docs"
 )
 
 //	@title			gin-boilerplate API
 //	@version		1.0
-//	@description	My boilerplate for personal projects
+//	@description
 
 // @securityDefinitions.apikey BearerAuth
 // @in							header

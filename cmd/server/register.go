@@ -1,19 +1,16 @@
 package server
 
 import (
-	"gin-boilerplate/database/sql/postgres"
-	user_repository "gin-boilerplate/internal/repository/user"
-	auth_usecase "gin-boilerplate/internal/usecase/auth"
+	user_repository "habbit-tracker/internal/repository/user"
+	auth_usecase "habbit-tracker/internal/usecase/auth"
+
+	"gorm.io/gorm"
 )
 
-func Register() {
-	// noSqlDB := mongodb.MongoDBClient()
+func Register(sqlDB *gorm.DB) {
+	var (
+		userRepo = user_repository.InitUserSqlRepository(sqlDB)
+	)
 
-	// user_repository.InitUserNosqlRepository(noSqlDB)
-	// auth_usecase.InitAuthUsecase(user_repository.UserNosqlRepository())
-
-	sqlDB := postgres.PostgresClient()
-	user_repository.InitUserSqlRepository(sqlDB)
-	auth_usecase.InitAuthUsecase(user_repository.UserSqlRepository())
-
+	auth_usecase.InitAuthUsecase(userRepo)
 }

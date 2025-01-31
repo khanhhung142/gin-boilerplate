@@ -3,8 +3,8 @@ package auth_usecase
 import (
 	"context"
 	"encoding/json"
-	"gin-boilerplate/config"
-	"gin-boilerplate/utility"
+	"habbit-tracker/config"
+	"habbit-tracker/utility"
 	"log/slog"
 	"time"
 

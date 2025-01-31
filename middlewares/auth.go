@@ -1,8 +1,8 @@
 package middlewares
 
 import (
-	"gin-boilerplate/consts"
-	auth_usecase "gin-boilerplate/internal/usecase/auth"
+	"habbit-tracker/consts"
+	auth_usecase "habbit-tracker/internal/usecase/auth"
 	"strings"
 
 	"github.com/gin-gonic/gin"

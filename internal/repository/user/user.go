@@ -2,7 +2,7 @@ package user_repository
 
 import (
 	"context"
-	"gin-boilerplate/internal/model"
+	"habbit-tracker/internal/model"
 )
 
 // This is example. Choose your database

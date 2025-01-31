@@ -14,7 +14,6 @@ type ServerConfig struct {
 
 type DatabaseConfig struct {
 	ConnectString string `yaml:"connect_string"`
-	DBName        string `yaml:"database_name"`
 }
 
 type LogConfig struct {

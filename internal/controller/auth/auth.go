@@ -1,9 +1,9 @@
 package auth_controller
 
 import (
-	"gin-boilerplate/consts"
-	"gin-boilerplate/internal/model"
-	auth_usecase "gin-boilerplate/internal/usecase/auth"
+	"habbit-tracker/consts"
+	"habbit-tracker/internal/model"
+	auth_usecase "habbit-tracker/internal/usecase/auth"
 
 	"github.com/gin-gonic/gin"
 )
@@ -35,7 +35,7 @@ func NewController(authUsecase auth_usecase.IAuthUsecase) IAuthController {
 //	@Router			/auth/signup [post]
 func (ctrl *authController) SignUp(c *gin.Context) {
 	// validate request
-	var in SignUpInput
+	var in SignUpRequest
 	if err := c.ShouldBindJSON(&in); err != nil {
 		c.Set(consts.GinErrorKey, consts.CodeInvalidRequest)
 		c.Set(consts.GinDetailErrorKey, err)
@@ -52,7 +52,7 @@ func (ctrl *authController) SignUp(c *gin.Context) {
 		return
 	}
 	// response
-	c.Set(consts.GinResponseKey, SignUpOutput{
+	c.Set(consts.GinResponseKey, SignUpResponse{
 		Success: true,
 	})
 }
@@ -69,7 +69,7 @@ func (ctrl *authController) SignUp(c *gin.Context) {
 //	@Router			/auth/signin [post]
 func (ctrl *authController) SignIn(c *gin.Context) {
 	// validate request
-	var in SignInInput
+	var in SignInRequest
 	if err := c.ShouldBindJSON(&in); err != nil {
 		c.Set(consts.GinErrorKey, consts.CodeInvalidRequest)
 		c.Set(consts.GinDetailErrorKey, err)
@@ -83,7 +83,7 @@ func (ctrl *authController) SignIn(c *gin.Context) {
 		return
 	}
 	// response
-	c.Set(consts.GinResponseKey, SignInOutput{
+	c.Set(consts.GinResponseKey, SignInResponse{
 		Token: out.Token,
 		Exp:   out.Exp,
 	})

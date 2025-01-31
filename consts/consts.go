@@ -14,3 +14,7 @@ const (
 	TraceKey     = "trace_id"
 	TracekeyGrpc = "grpc.trace_id"
 )
+
+const (
+	MetricServiceName = "habbit-tracker-backend"
+)

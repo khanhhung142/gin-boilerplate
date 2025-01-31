@@ -2,11 +2,10 @@ package server
 
 import (
 	"context"
-	"gin-boilerplate/config"
-	"gin-boilerplate/database/sql/postgres"
-	"gin-boilerplate/pkg/logger"
-	"gin-boilerplate/pkg/storage/local"
-	"gin-boilerplate/pkg/validator"
+	"habbit-tracker/config"
+	db "habbit-tracker/database"
+	"habbit-tracker/pkg/logger"
+	"habbit-tracker/pkg/validator"
 	"net/http"
 	"os"
 	"os/signal"
@@ -25,13 +24,11 @@ func StartServer() {
 
 	ctx := context.Background()
 
-	// mongodb.InitClient(ctx)
-	postgres.InitClient(ctx, cfg)
-	local.InitLocalStorage()
+	sqlDB := db.Connect(ctx, cfg)
 	validator.InitValidator()
 
 	// Register all dependencies
-	Register()
+	Register(sqlDB)
 
 	r := InitHandler()
 

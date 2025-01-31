@@ -4,22 +4,22 @@ package auth_controller
 // Gin already support validation, so we don't need to init a validator
 
 // SignIn
-type SignInInput struct {
+type SignInRequest struct {
 	Username string `json:"username" binding:"required,min=8,max=50"`
 	Password string `json:"password" binding:"required,min=8,max=50"`
 }
 
-type SignInOutput struct {
+type SignInResponse struct {
 	Token string `json:"token"`
 	Exp   int64  `json:"exp_time"`
 }
 
 // SignUp
-type SignUpInput struct {
+type SignUpRequest struct {
 	Username string `json:"username" binding:"required,min=8,max=50"`
 	Password string `json:"password" binding:"required,min=8,max=50"`
 }
 
-type SignUpOutput struct {
+type SignUpResponse struct {
 	Success bool `json:"success"`
 }

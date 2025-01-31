@@ -3,8 +3,8 @@ package utility
 import (
 	"errors"
 	"fmt"
-	"gin-boilerplate/config"
-	"gin-boilerplate/consts"
+	"habbit-tracker/config"
+	"habbit-tracker/consts"
 	"log/slog"
 	"math/rand"
 

@@ -3,8 +3,8 @@ package logger
 import (
 	"context"
 	"fmt"
-	"gin-boilerplate/config"
-	"gin-boilerplate/consts"
+	"habbit-tracker/config"
+	"habbit-tracker/consts"
 	"os"
 	"path/filepath"
 
